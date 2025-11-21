@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_crear_oferta"
+        android:title="Crear oferta"
+        app:showAsAction="never" /> <!-- "never" fuerza a que aparezca en el menú desplegable (3 puntos) -->
+
+    <!-- Opción 2: Perfil -->
+    <item
+        android:id="@+id/menu_perfil"
+        android:title="Perfil"
+        app:showAsAction="never" />
+
+    <!-- Opción 3: Mis ofertas -->
+    <item
+        android:id="@+id/menu_mis_ofertas"
+        android:title="Mis ofertas"
+        app:showAsAction="never" />
+
+    <!-- Opción 4: Registro de trabajos -->
+    <item
+        android:id="@+id/menu_registro_trabajos"
+        android:title="Registro de trabajos"
+        app:showAsAction="never" />
+
+</menu>
+

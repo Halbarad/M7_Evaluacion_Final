@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".labor_forum.ui.PrincipalActivity">
+
+    <!-- Contenedor de la barra superior -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcTopContainer"
+        android:name="cl.unab.m7_evaluacion_final.labor_forum.ui.AppBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_app_bar" />
+
+    <!-- Contenedor del contenido principal -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcCenterContainer"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/fcBottomContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fcTopContainer"
+        app:navGraph="@navigation/nav_graph_main" />
+
+    <!-- Contenedor de la barra inferior -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcBottomContainer"
+        android:name="cl.unab.m7_evaluacion_final.labor_forum.ui.DockedToolbarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout="@layout/fragment_docked_toolbar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="App.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+    <!-- Aquí defines el color de fondo del indicador.
+         Puedes usar cualquier color. ?attr/colorSecondaryContainer es una buena opción
+         que se adapta al tema de tu app.
+    -->
+    <item name="android:background">?attr/colorPrimaryContainer</item>
+</style>
+</resources>

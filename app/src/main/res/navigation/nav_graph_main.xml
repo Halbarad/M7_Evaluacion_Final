@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_principal"
+    app:startDestination="@id/ofertasLaboralesFragment">
+
+    <fragment
+        android:id="@+id/ofertasLaboralesFragment"
+        android:name="cl.unab.m7_evaluacion_final.labor_forum.ui.OfertasLaboralesFragment"
+        android:label="fragment_ofertas_laborales"
+        tools:layout="@layout/fragment_ofertas_laborales" >
+        <action
+            android:id="@+id/action_ofertasLaboralesFragment_to_crearOfertaFragment"
+            app:destination="@id/crearOfertaFragment" />
+        <action
+            android:id="@+id/action_ofertasLaboralesFragment_to_detalleOfertaLaboralFragment"
+            app:destination="@id/detalleOfertaLaboralFragment" >
+            <argument
+                android:name="idOfertaLaboral"
+                app:argType="integer"
+                android:defaultValue="-1"/>
+        </action>
+        <action
+            android:id="@+id/action_ofertasLaboralesFragment_to_perfilTrabajadorFragment"
+            app:destination="@id/perfilTrabajadorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleOfertaLaboralFragment"
+        android:name="cl.unab.m7_evaluacion_final.labor_forum.ui.DetalleOfertaLaboralFragment"
+        android:label="fragment_detalle_oferta_laboral"
+        tools:layout="@layout/fragment_detalle_oferta_laboral" >
+        <argument
+            android:name="idOfertaLaboral"
+            app:argType="integer"
+            android:defaultValue="-1"/>
+        <action
+            android:id="@+id/action_detalleOfertaLaboralFragment_to_ofertasLaboralesFragment"
+            app:destination="@id/ofertasLaboralesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilTrabajadorFragment"
+        android:name="cl.unab.m7_evaluacion_final.labor_forum.ui.PerfilTrabajadorFragment"
+        android:label="fragment_perfil_trabajador"
+        tools:layout="@layout/fragment_perfil_trabajador" >
+        <action
+            android:id="@+id/action_perfilTrabajadorFragment_to_ofertasLaboralesFragment"
+            app:destination="@id/ofertasLaboralesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crearOfertaFragment"
+        android:name="cl.unab.m7_evaluacion_final.labor_forum.ui.CrearOfertaFragment"
+        android:label="fragment_crear_oferta"
+        tools:layout="@layout/fragment_crear_oferta" >
+        <action
+            android:id="@+id/action_crearOfertaFragment_to_ofertasLaboralesFragment"
+            app:destination="@id/ofertasLaboralesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/misOfertasFragment"
+        android:name="cl.unab.m7_evaluacion_final.labor_forum.ui.MisOfertasFragment"
+        android:label="fragment_mis_ofertas"
+        tools:layout="@layout/fragment_mis_ofertas" />
+</navigation>

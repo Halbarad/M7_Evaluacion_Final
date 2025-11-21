@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <!-- Imagen o Logo de la Empresa -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivLogoEmpresa"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+            tools:src="@tools:sample/avatars" />
+
+        <!-- Título de la Oferta -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTituloOferta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/ivLogoEmpresa"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Desarrollador Android Trainee" />
+
+        <!-- Nombre de la Empresa -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNombreEmpresa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            app:layout_constraintStart_toEndOf="@+id/ivLogoEmpresa"
+            app:layout_constraintTop_toBottomOf="@id/tvTituloOferta"
+            tools:text="Nombre de la Empresa" />
+
+        <!-- Ubicación de la Oferta -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvUbicacion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            app:drawableStartCompat="@drawable/ic_location_24px"
+            app:layout_constraintStart_toEndOf="@+id/ivLogoEmpresa"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreEmpresa"
+            tools:text="Santiago, Chile" />
+
+        <!-- Salario Ofrecido -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSalario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:drawablePadding="4dp"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/ivLogoEmpresa"
+            app:layout_constraintTop_toBottomOf="@+id/tvUbicacion"
+            tools:text="$1.200.000" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?attr/materialIconButtonStyle"
+            app:iconTint="?attr/colorPrimary"
+            app:icon="@drawable/ic_edit_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:iconTint="?attr/colorError"
+            style="?attr/materialIconButtonStyle"
+            app:icon="@drawable/ic_delete_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="soy_trabajador">Soy Trabajador</string>
+    <string name="soy_empleador">Soy Empleador</string>
+    <string name="rut">Rut</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="recuperar_contrase_a">Recuperar contraseña</string>
+    <string name="registrarme">Registrarme</string>
+    <string name="ingresar">Ingresar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="regiones_chile">
+        <item>Región de Arica y Parinacota</item>
+        <item>Región de Tarapacá</item>
+        <item>Región de Antofagasta</item>
+        <item>Región de Atacama</item>
+        <item>Región de Coquimbo</item>
+        <item>Región de Valparaíso</item>
+        <item>Región Metropolitana</item>
+        <item>Región de O’Higgins</item>
+        <item>Región del Maule</item>
+        <item>Región del Ñuble</item>
+        <item>Región del Biobío</item>
+        <item>Región de La Araucanía</item>
+        <item>Región de Los Ríos</item>
+        <item>Región de Los Lagos</item>
+        <item>Región de Aysén</item>
+        <item>Región de Magallanes</item>
+    </string-array>
+</resources>
