@@ -2,19 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/accelerator"
+        android:id="@+id/home"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_home_24px"
         android:title="Home" />
 
     <item
-        android:id="@+id/rotation"
+        android:id="@+id/Trabajos"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_search_24px"
-        android:title="Buscar" />
+        android:icon="@drawable/ic_assignment_24px"
+        android:title="Trabajos" />
 
     <item
-        android:id="@+id/dashboard"
+        android:id="@+id/Ofertas"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_assignment_add_24px"
+        android:title="Ofertas" />
+
+    <item
+        android:id="@+id/perfil"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_person_24px"
         android:title="Perfil" />

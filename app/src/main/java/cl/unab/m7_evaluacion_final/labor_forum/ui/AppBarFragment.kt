@@ -29,6 +29,21 @@ class AppBarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 1. Obtenemos el NavController del contenedor central
+        val navController = requireActivity().supportFragmentManager
+            .findFragmentById(R.id.fcCenterContainer)
+            ?.findNavController()
+
+        // 2. NUEVO: Escuchamos los cambios de pantalla para actualizar el título
+        navController?.addOnDestinationChangedListener { _, destination, _ ->
+            // 'destination.label' contiene el texto android:label definido en nav_graph_main.xml
+            // Si el label es null (ej: no definido), dejamos el título anterior o uno por defecto
+            destination.label?.let { label ->
+                binding.topAppBar.title = label
+            }
+        }
+
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             // Buscamos el NavController del contenedor central (donde queremos que cambie la pantalla)
             val navController = requireActivity().supportFragmentManager
@@ -55,11 +70,7 @@ class AppBarFragment : Fragment() {
                 }
 
                 R.id.menu_registro_trabajos -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Registro de trabajos (Próximamente)",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    navController?.navigate(R.id.contratosActivosFragment)
                     true
                 }
 
