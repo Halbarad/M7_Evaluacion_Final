@@ -6,27 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".labor_forum.ui.ContratosActivosFragment">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvContratos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contratos"
-        android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvContratos"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clipToPadding="false"
         android:paddingBottom="88dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvContratos"
         tools:listitem="@layout/item_oferta_laboral" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

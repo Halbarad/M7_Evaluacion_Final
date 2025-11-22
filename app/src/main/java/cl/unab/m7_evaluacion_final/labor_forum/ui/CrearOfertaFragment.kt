@@ -49,6 +49,7 @@ class CrearOfertaFragment : Fragment() {
         configurarSelectorFecha()
         configurarFormatoMoneda()
         configurarBotonCrear()
+        configurarBotonCancelar()
     }
 
     private fun configurarListasDesplegables() {
@@ -206,6 +207,12 @@ class CrearOfertaFragment : Fragment() {
 
             Toast.makeText(requireContext(), "Oferta creada con éxito", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack() // Volver atrás
+        }
+    }
+
+    private fun configurarBotonCancelar() {
+        binding.btnCancelar.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

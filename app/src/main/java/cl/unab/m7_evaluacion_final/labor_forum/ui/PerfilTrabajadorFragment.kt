@@ -31,7 +31,6 @@ class PerfilTrabajadorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         cargarDatosUsuario()
-        configurarBotonLogout()
     }
 
     private fun cargarDatosUsuario() {
@@ -51,22 +50,6 @@ class PerfilTrabajadorFragment : Fragment() {
                 binding.tvTelefono.text = "+56 9 ${usuario.telefono}"
                 binding.tvUbicacion.text = "${usuario.comuna}, ${usuario.region}"
             }
-        }
-    }
-
-    private fun configurarBotonLogout() {
-        binding.btnLogout.setOnClickListener {
-            // 1. Borramos la sesión guardada
-            cl.unab.m7_evaluacion_final.labor_forum.auxiliar.UserSession.cerrarSesion(requireContext())
-
-            // 2. Volvemos a la MainActivity (Login)
-            val intent = android.content.Intent(requireContext(), cl.unab.m7_evaluacion_final.MainActivity::class.java)
-            // Limpiamos el stack para que no puedan volver atrás
-            intent.flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-
-            // 3. Cerramos la Activity actual
-            requireActivity().finish()
         }
     }
 

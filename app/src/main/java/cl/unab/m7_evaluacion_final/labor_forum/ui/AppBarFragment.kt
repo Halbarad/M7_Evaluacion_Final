@@ -51,9 +51,13 @@ class AppBarFragment : Fragment() {
                 ?.findNavController()
 
             when (menuItem.itemId) {
+
+                R.id.menu_ofertas_laborales -> {
+                    navController?.navigate(R.id.ofertasLaboralesFragment)
+                    true
+                }
+
                 R.id.menu_crear_oferta -> {
-                    // Navegamos al fragmento de crear oferta
-                    // Asegúrate de haber agregado este ID al nav_graph_main.xml
                     navController?.navigate(R.id.crearOfertaFragment)
                     true
                 }
@@ -64,13 +68,26 @@ class AppBarFragment : Fragment() {
                 }
 
                 R.id.menu_mis_ofertas -> {
-                    // Navegamos al fragmento de "Mis Ofertas"
                     navController?.navigate(R.id.misOfertasFragment)
                     true
                 }
 
                 R.id.menu_registro_trabajos -> {
                     navController?.navigate(R.id.contratosActivosFragment)
+                    true
+                }
+
+                R.id.menu_logout -> {
+                    // 1. Cerrar Sesión
+                    cl.unab.m7_evaluacion_final.labor_forum.auxiliar.UserSession.cerrarSesion(requireContext())
+
+                    // 2. Volver al Login (MainActivity)
+                    val intent = android.content.Intent(requireContext(), cl.unab.m7_evaluacion_final.MainActivity::class.java)
+                    intent.flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+
+                    // 3. Cerrar PrincipalActivity
+                    requireActivity().finish()
                     true
                 }
 

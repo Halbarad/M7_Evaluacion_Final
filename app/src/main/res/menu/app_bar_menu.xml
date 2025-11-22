@@ -3,6 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menu_ofertas_laborales"
+        android:title="Ofertas Laborales"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_registro_trabajos"
+        android:title="Registro de trabajos"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_crear_oferta"
         android:title="Crear oferta"
         app:showAsAction="never" /> <!-- "never" fuerza a que aparezca en el menú desplegable (3 puntos) -->
@@ -18,8 +28,8 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/menu_registro_trabajos"
-        android:title="Registro de trabajos"
+        android:id="@+id/menu_logout"
+        android:title="Cerrar seción"
         app:showAsAction="never" />
 
 </menu>

@@ -45,6 +45,7 @@ class RegistroTrabajadorFragment : Fragment() {
         configurarListasDesplegables()
         configurarFormatoRut()
         configurarBotonRegistro()
+        configurarBotonCancelar()
     }
 
     private fun configurarListasDesplegables() {
@@ -156,6 +157,12 @@ class RegistroTrabajadorFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun configurarBotonCancelar() {
+        binding.btnCancelar.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {

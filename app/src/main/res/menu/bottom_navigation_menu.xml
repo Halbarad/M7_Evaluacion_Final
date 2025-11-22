@@ -2,25 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/home"
+        android:id="@+id/ofertasLaboralesFragment"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_home_24px"
         android:title="Home" />
 
     <item
-        android:id="@+id/Trabajos"
+        android:id="@+id/contratosActivosFragment"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_assignment_24px"
         android:title="Trabajos" />
 
     <item
-        android:id="@+id/Ofertas"
+        android:id="@+id/misOfertasFragment"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_assignment_add_24px"
         android:title="Ofertas" />
 
     <item
-        android:id="@+id/perfil"
+        android:id="@+id/perfilTrabajadorFragment"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_person_24px"
         android:title="Perfil" />
