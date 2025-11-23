@@ -23,6 +23,7 @@ import cl.unab.m7_evaluacion_final.labor_forum.viewmodel.OfertaLaboralViewModel
 import cl.unab.m7_evaluacion_final.labor_forum.viewmodel.RegistroViewModel
 import java.text.NumberFormat
 import androidx.lifecycle.asLiveData
+import androidx.navigation.fragment.navArgs
 
 class CrearOfertaFragment : Fragment() {
 
@@ -33,6 +34,8 @@ class CrearOfertaFragment : Fragment() {
     private val viewModel: OfertaLaboralViewModel by viewModels()
     private val registroViewModel: RegistroViewModel by viewModels()
     private var nombreEmpresaUsuario: String = ""
+    private val args: CrearOfertaFragmentArgs by navArgs() // Para recibir argumentos
+    private var idEdicion: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,14 @@ class CrearOfertaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        idEdicion = args.idOfertaAEditar
+
+        if (idEdicion != -1) {
+            configurarModoEdicion(idEdicion)
+        } else {
+            configurarBotonCrear() // Lógica normal
+        }
+
         registroViewModel.obtenerUsuarioLogueado().observe(viewLifecycleOwner) { usuario ->
             if (usuario != null) {
                 // Nota: Verifica si en tu modelo Usuario la propiedad es 'apellido' o 'Apellido'
@@ -59,8 +70,81 @@ class CrearOfertaFragment : Fragment() {
         configurarListasDesplegables()
         configurarSelectorFecha()
         configurarFormatoMoneda()
-        configurarBotonCrear()
         configurarBotonCancelar()
+    }
+
+    private fun configurarModoEdicion(id: Int) {
+        binding.btnCrearOferta.text = "Actualizar Oferta"
+
+        // Cargar datos actuales
+        viewModel.obtenerOferta(id).observe(viewLifecycleOwner) { oferta ->
+            if(oferta != null) {
+                binding.tilTitulo.editText?.setText(oferta.titulo)
+                binding.tilDescripcion.editText?.setText(oferta.descripcion)
+
+                // Formatear salario para mostrar
+                val formato = NumberFormat.getCurrencyInstance(Locale.getDefault())
+                formato.maximumFractionDigits = 0
+                try {
+                    val salarioNum = oferta.salario.toLong()
+                    binding.tilSalario.editText?.setText(formato.format(salarioNum))
+                } catch(e: Exception) {
+                    binding.tilSalario.editText?.setText(oferta.salario)
+                }
+
+                binding.tilCupos.editText?.setText(oferta.cupos.toString())
+                binding.tilRegion.editText?.setText(oferta.region)
+                binding.tilComuna.editText?.setText(oferta.comuna)
+
+                // Guardar fechas
+                fechaInicioSeleccionada = oferta.fechaInicioContrato
+                fechaTerminoSeleccionada = oferta.fechaTerminoContrato
+
+                // Mostrar fechas en el campo
+                val formatoFecha = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                formatoFecha.timeZone = TimeZone.getTimeZone("UTC")
+                val inicioStr = formatoFecha.format(fechaInicioSeleccionada!!)
+                val finStr = formatoFecha.format(fechaTerminoSeleccionada!!)
+                binding.tilEditDate.setText("$inicioStr - $finStr")
+
+                // Necesitamos setear el adapter de comuna nuevamente pq al setear texto directo no se dispara el listener de región
+                val listaComunas = DatosGeograficos.obtenerComunasPorRegion(oferta.region)
+                val adapterComunas = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, listaComunas)
+                (binding.tilComuna.editText as? AutoCompleteTextView)?.setAdapter(adapterComunas)
+            }
+        }
+
+        binding.btnCrearOferta.setOnClickListener {
+            // Lógica de validación igual...
+            val titulo = binding.tilTitulo.editText?.text.toString()
+            val descripcion = binding.tilDescripcion.editText?.text.toString()
+            val salario = binding.tilSalario.editText?.text.toString()
+            val cupos = binding.tilCupos.editText?.text.toString().toIntOrNull()
+            val region = binding.tilRegion.editText?.text.toString()
+            val comuna = binding.tilComuna.editText?.text.toString()
+
+            if (titulo.isEmpty() || salario.isEmpty() || cupos == null || region.isEmpty() || comuna.isEmpty() || fechaInicioSeleccionada == null) {
+                Toast.makeText(requireContext(), "Complete todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Llamar a update en vez de insert
+            viewModel.actualizarOferta(
+                id = idEdicion,
+                // ... resto de parámetros
+                titulo = titulo,
+                descripcion = descripcion,
+                salario = salario,
+                region = region,
+                comuna = comuna,
+                fechaInicio = fechaInicioSeleccionada!!,
+                fechaTermino = fechaTerminoSeleccionada!!,
+                cupos = cupos
+            )
+
+            Toast.makeText(requireContext(), "Oferta actualizada", Toast.LENGTH_SHORT).show()
+            findNavController().popBackStack()
+        }
     }
 
     private fun configurarListasDesplegables() {

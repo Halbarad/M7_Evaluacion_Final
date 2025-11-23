@@ -42,22 +42,35 @@ class DetalleOfertaLaboralFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val idOferta = args.idOfertaLaboral
-        val ocultarBoton = args.ocultarBotonPostular
+        val modoVisualizacion = args.modoVisualizacion // 0: Postular, 1: Editar, 2: Solo Lectura
 
-        // LÓGICA PARA OCULTAR EL BOTÓN
-        if (ocultarBoton) {
-            binding.btnPostular.visibility = View.GONE
+        // LÓGICA DEL BOTÓN SEGÚN MODO
+        when (modoVisualizacion) {
+            1 -> { // MODO EDICIÓN (Desde Mis Ofertas)
+                binding.btnPostular.visibility = View.VISIBLE
+                binding.btnPostular.text = "Editar Oferta"
+                binding.btnPostular.setOnClickListener {
+                    val action = DetalleOfertaLaboralFragmentDirections.actionDetalleOfertaLaboralFragmentToCrearOfertaFragment()
+                    action.idOfertaAEditar = idOferta
+                    findNavController().navigate(action)
+                }
+            }
+            2 -> { // MODO SOLO LECTURA (Desde Contratos Activos)
+                binding.btnPostular.visibility = View.GONE
+            }
+            else -> { // MODO POSTULACIÓN (Desde Ofertas Laborales)
+                binding.btnPostular.visibility = View.VISIBLE
+                binding.btnPostular.text = "Postular"
+                binding.btnPostular.setOnClickListener {
+                    if (ofertaActual != null) {
+                        contratoViewModel.postularAOferta(ofertaActual!!)
+                    }
+                }
+            }
         }
 
         binding.btnCancelar.setOnClickListener {
             findNavController().popBackStack()
-        }
-
-        // Configurar botón Postular
-        binding.btnPostular.setOnClickListener {
-            if (ofertaActual != null) {
-                contratoViewModel.postularAOferta(ofertaActual!!)
-            }
         }
 
         // Observadores para la postulación

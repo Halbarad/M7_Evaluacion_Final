@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import cl.unab.m7_evaluacion_final.labor_forum.modelos.OfertaLaboral
 
 @Dao
@@ -27,4 +28,8 @@ interface OfertaLaboralDao {
 
     @Query("SELECT * FROM OfertaLaboral WHERE idEmpleador = :idEmpleador ORDER BY fechaTerminoContrato DESC")
     fun obtenerMisOfertas(idEmpleador: Int): kotlinx.coroutines.flow.Flow<List<OfertaLaboral>>
+
+    @Update
+    suspend fun actualizarOferta(oferta: OfertaLaboral)
+
 }

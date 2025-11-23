@@ -81,6 +81,39 @@ class OfertaLaboralViewModel(application: Application) : AndroidViewModel(applic
         }
     }
 
+    fun actualizarOferta(
+        id: Int, titulo: String, descripcion: String, salario: String,
+        region: String, comuna: String, fechaInicio: Date, fechaTermino: Date, cupos: Int
+    ) {
+        viewModelScope.launch {
+            // Recuperamos primero la oferta actual para mantener los datos que no cambian
+            // Nota: Esto es un atajo, idealmente deberíamos hacer una consulta primero
+            // Pero como es una actualización, el repositorio debería manejarlo.
+            // Aquí asumiremos que tenemos que recuperar el objeto completo.
+
+            // Como estamos dentro de una corrutina, podemos recolectar el flujo
+            repositorioOfertas.obtenerOfertaPorId(id).collect { ofertaActual ->
+                if (ofertaActual != null) {
+                    val ofertaActualizada = ofertaActual.copy(
+                        titulo = titulo,
+                        descripcion = descripcion,
+                        salario = salario,
+                        region = region,
+                        comuna = comuna,
+                        fechaInicioContrato = fechaInicio,
+                        fechaTerminoContrato = fechaTermino,
+                        cupos = cupos
+                    )
+                    repositorioOfertas.actualizarOferta(ofertaActualizada)
+                }
+                // Cancelamos la colección después de obtener el primer valor para evitar loops
+                // En Flow esto se hace lanzando una excepción de cancelación o usando first()
+                throw kotlinx.coroutines.CancellationException("Oferta actualizada")
+            }
+        }
+    }
+
+
     // Función para obtener detalle (se mantiene igual)
     fun obtenerOferta(id: Int): LiveData<OfertaLaboral> {
         return repositorioOfertas.obtenerOfertaPorId(id).asLiveData()

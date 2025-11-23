@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cl.unab.m7_evaluacion_final.databinding.FragmentMisOfertasBinding
 import cl.unab.m7_evaluacion_final.labor_forum.ui.adaptador.MisOfertasAdapter
@@ -36,8 +37,17 @@ class MisOfertasFragment : Fragment() {
     private fun configurarRecyclerView() {
         // 1. Inicializar Adapter
         val adapter = MisOfertasAdapter { oferta ->
-            // Aquí puedes navegar al detalle o editar
-            Toast.makeText(requireContext(), "Oferta: ${oferta.titulo}", Toast.LENGTH_SHORT).show()
+            val bundle = Bundle().apply {
+                putInt("idOfertaLaboral", oferta.id)
+                // MODO 1: Edición (Viene de Mis Ofertas)
+                putInt("modoVisualizacion", 1)
+            }
+
+            // Navegamos usando la acción que acabamos de crear en el XML
+            findNavController().navigate(
+                cl.unab.m7_evaluacion_final.R.id.action_misOfertasFragment_to_detalleOfertaLaboralFragment,
+                bundle
+            )
         }
 
         // 2. Configurar RecyclerView

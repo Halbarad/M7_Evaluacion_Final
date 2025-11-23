@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_ofertasLaboralesFragment_to_contratosActivosFragment"
             app:destination="@id/contratosActivosFragment" />
+        <action
+            android:id="@+id/action_ofertasLaboralesFragment_to_misOfertasFragment"
+            app:destination="@id/misOfertasFragment" />
     </fragment>
     <fragment
         android:id="@+id/detalleOfertaLaboralFragment"
@@ -38,12 +41,21 @@
             app:argType="integer"
             android:defaultValue="-1"/>
         <argument
-            android:name="ocultarBotonPostular"
-            app:argType="boolean"
-            android:defaultValue="false"/>
+            android:name="modoVisualizacion"
+            app:argType="integer"
+            android:defaultValue="0"/>
         <action
             android:id="@+id/action_detalleOfertaLaboralFragment_to_ofertasLaboralesFragment"
             app:destination="@id/ofertasLaboralesFragment" />
+        <action
+            android:id="@+id/action_detalleOfertaLaboralFragment_to_misOfertasFragment"
+            app:destination="@id/misOfertasFragment" />
+        <action
+            android:id="@+id/action_detalleOfertaLaboralFragment_to_contratosActivosFragment"
+            app:destination="@id/contratosActivosFragment" />
+        <action
+            android:id="@+id/action_detalleOfertaLaboralFragment_to_crearOfertaFragment"
+            app:destination="@id/crearOfertaFragment" />
     </fragment>
     <fragment
         android:id="@+id/perfilTrabajadorFragment"
@@ -59,6 +71,10 @@
         android:name="cl.unab.m7_evaluacion_final.labor_forum.ui.CrearOfertaFragment"
         android:label="Crear Oferta"
         tools:layout="@layout/fragment_crear_oferta" >
+        <argument
+            android:name="idOfertaAEditar"
+            app:argType="integer"
+            android:defaultValue="-1" />
         <action
             android:id="@+id/action_crearOfertaFragment_to_ofertasLaboralesFragment"
             app:destination="@id/ofertasLaboralesFragment" />
@@ -67,7 +83,14 @@
         android:id="@+id/misOfertasFragment"
         android:name="cl.unab.m7_evaluacion_final.labor_forum.ui.MisOfertasFragment"
         android:label="Mis Ofertas"
-        tools:layout="@layout/fragment_mis_ofertas" />
+        tools:layout="@layout/fragment_mis_ofertas" >
+        <action
+            android:id="@+id/action_misOfertasFragment_to_ofertasLaboralesFragment"
+            app:destination="@id/ofertasLaboralesFragment" />
+        <action
+            android:id="@+id/action_misOfertasFragment_to_detalleOfertaLaboralFragment"
+            app:destination="@id/detalleOfertaLaboralFragment" />
+    </fragment>
     <fragment
         android:id="@+id/contratosActivosFragment"
         android:name="cl.unab.m7_evaluacion_final.labor_forum.ui.ContratosActivosFragment"

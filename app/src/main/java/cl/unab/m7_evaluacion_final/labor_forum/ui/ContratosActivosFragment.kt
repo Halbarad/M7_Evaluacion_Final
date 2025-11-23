@@ -35,17 +35,15 @@ class ContratosActivosFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Reutilizamos el adapter de ofertas laborales
-        // Si quisieras mostrar un botón "Ver contrato" distinto, tendrías que crear otro adapter.
         val adapter = OfertaLaboralAdapter { ofertaSeleccionada ->
 
             // Preparamos los datos para el viaje
             val bundle = Bundle().apply {
                 putInt("idOfertaLaboral", ofertaSeleccionada.id)
-                putBoolean("ocultarBotonPostular", true) // <--- AQUÍ ESTÁ LA CLAVE
+                // MODO 2: Solo Lectura (Viene de Contratos Activos)
+                putInt("modoVisualizacion", 2)
             }
 
-            // Navegamos usando la acción que creamos en el XML
-            // Asegúrate de que R.id.action_contratosActivos... exista (Build -> Rebuild Project si no aparece)
             findNavController().navigate(
                 cl.unab.m7_evaluacion_final.R.id.action_contratosActivosFragment_to_detalleOfertaLaboralFragment,
                 bundle

@@ -8,6 +8,10 @@ class OfertaLaboralRepositorio(private val dao: OfertaLaboralDao) {
         dao.insertarOferta(oferta)
     }
 
+    suspend fun actualizarOferta(oferta: OfertaLaboral) {
+        dao.actualizarOferta(oferta)
+    }
+
     fun obtenerTodasLasOfertas(): kotlinx.coroutines.flow.Flow<List<OfertaLaboral>> {
         return dao.obtenerTodasLasOfertas()
     }
