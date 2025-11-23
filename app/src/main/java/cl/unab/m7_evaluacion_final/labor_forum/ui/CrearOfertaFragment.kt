@@ -20,7 +20,9 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import cl.unab.m7_evaluacion_final.labor_forum.viewmodel.OfertaLaboralViewModel
+import cl.unab.m7_evaluacion_final.labor_forum.viewmodel.RegistroViewModel
 import java.text.NumberFormat
+import androidx.lifecycle.asLiveData
 
 class CrearOfertaFragment : Fragment() {
 
@@ -29,6 +31,8 @@ class CrearOfertaFragment : Fragment() {
     private var fechaInicioSeleccionada: Date? = null
     private var fechaTerminoSeleccionada: Date? = null
     private val viewModel: OfertaLaboralViewModel by viewModels()
+    private val registroViewModel: RegistroViewModel by viewModels()
+    private var nombreEmpresaUsuario: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +48,13 @@ class CrearOfertaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        registroViewModel.obtenerUsuarioLogueado().observe(viewLifecycleOwner) { usuario ->
+            if (usuario != null) {
+                // Nota: Verifica si en tu modelo Usuario la propiedad es 'apellido' o 'Apellido'
+                nombreEmpresaUsuario = "${usuario.nombre} ${usuario.apellido}"
+            }
+        }
 
         configurarListasDesplegables()
         configurarSelectorFecha()
@@ -179,34 +190,45 @@ class CrearOfertaFragment : Fragment() {
     private fun configurarBotonCrear() {
         binding.btnCrearOferta.setOnClickListener {
             val titulo = binding.tilTitulo.editText?.text.toString()
-            val empresa = binding.tilEmpresa.editText?.text.toString()
+            // Eliminamos la lectura de 'descripcion' repetida o incorrecta si la hubiera
             val descripcion = binding.tilDescripcion.editText?.text.toString()
             val salario = binding.tilSalario.editText?.text.toString()
+
+            // CORRECCIÓN 1: Leer desde tilCupos
+            val cupos = binding.tilCupos.editText?.text.toString().toIntOrNull()
+
             val region = binding.tilRegion.editText?.text.toString()
             val comuna = binding.tilComuna.editText?.text.toString()
 
-            if (titulo.isEmpty() || empresa.isEmpty() || fechaInicioSeleccionada == null) {
-                Toast.makeText(requireContext(), "Complete los campos obligatorios", Toast.LENGTH_SHORT).show()
+            // CORRECCIÓN 2: Validar nombreEmpresaUsuario
+            if (titulo.isEmpty() || salario.isEmpty() || cupos == null || region.isEmpty() || comuna.isEmpty() || fechaInicioSeleccionada == null || nombreEmpresaUsuario.isEmpty()) {
+                Toast.makeText(requireContext(), "Complete campos y espere carga de usuario", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // TODO: Obtener el ID real del usuario logueado.
-            // Por ahora uso 1 como ejemplo. Debes implementar un UserSessionManager o similar.
             val idEmpleador = cl.unab.m7_evaluacion_final.labor_forum.auxiliar.UserSession.obtenerUsuarioId(requireContext())
 
             if (idEmpleador == -1) {
-                Toast.makeText(requireContext(), "Error de sesión. Ingrese nuevamente.", Toast.LENGTH_SHORT).show()
-                // Aquí podrías navegar de vuelta al Login si quisieras ser estricto
+                Toast.makeText(requireContext(), "Error de sesión", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            // CORRECCIÓN 3: Pasar nombreEmpresaUsuario como segundo argumento
             viewModel.crearOferta(
-                titulo, empresa, descripcion, salario, region, comuna,
-                fechaInicioSeleccionada!!, fechaTerminoSeleccionada!!, idEmpleador
+                titulo,
+                nombreEmpresaUsuario, // <--- AQUÍ VA EL NOMBRE
+                descripcion,
+                salario,
+                region,
+                comuna,
+                fechaInicioSeleccionada!!,
+                fechaTerminoSeleccionada!!,
+                cupos,
+                idEmpleador
             )
 
             Toast.makeText(requireContext(), "Oferta creada con éxito", Toast.LENGTH_SHORT).show()
-            findNavController().popBackStack() // Volver atrás
+            findNavController().popBackStack()
         }
     }
 

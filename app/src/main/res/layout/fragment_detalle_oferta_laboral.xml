@@ -89,18 +89,36 @@
             app:layout_constraintTop_toBottomOf="@+id/tvUbicacion"
             tools:text="Fecha" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvSalario"
+        <LinearLayout
+            android:id="@+id/llSaladioCupos"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:drawablePadding="4dp"
-            android:gravity="center_vertical"
-            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@+id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@+id/tvFecha"
-            tools:text="$25.000" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFecha">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvSalario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                tools:text="$25.000" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCupos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:gravity="center_vertical"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                tools:text="1/100" />
+
+        </LinearLayout>
 
         <!-- Título de la sección de descripción -->
         <com.google.android.material.textview.MaterialTextView
@@ -113,7 +131,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@+id/tvSalario" />
+            app:layout_constraintTop_toBottomOf="@+id/llSaladioCupos" />
 
         <!-- Texto de la descripción de la oferta -->
         <com.google.android.material.textview.MaterialTextView
@@ -130,13 +148,13 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancelar"
+            style="?attr/materialButtonTonalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?attr/materialButtonTonalStyle"
             android:layout_margin="16dp"
-            app:icon="@drawable/ic_close_24px"
             android:text="Cancelar"
             android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            app:icon="@drawable/ic_close_24px"
             app:layout_constraintEnd_toStartOf="@+id/btnPostular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDescripcionOferta" />

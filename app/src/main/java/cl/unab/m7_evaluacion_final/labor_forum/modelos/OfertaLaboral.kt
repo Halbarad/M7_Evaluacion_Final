@@ -27,6 +27,6 @@ data class OfertaLaboral(
     val fechaPublicacion: Date,
     val fechaInicioContrato: Date,
     val fechaTerminoContrato: Date,
-    val fechaExpiracion: Date,
+    val cupos: Int,
     val idEmpleador: Int
     )

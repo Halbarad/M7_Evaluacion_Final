@@ -53,13 +53,15 @@ class DetalleOfertaLaboralFragment : Fragment() {
                 binding.tvUbicacion.text = "${oferta.comuna}, ${oferta.region}"
 
                 // Formato de Salario
-                val formatoMoneda = NumberFormat.getCurrencyInstance(Locale("es", "CL"))
+                val formatoMoneda = NumberFormat.getCurrencyInstance(Locale.getDefault())
                 formatoMoneda.maximumFractionDigits = 0
                 binding.tvSalario.text = try {
                     formatoMoneda.format(oferta.salario.toLong())
                 } catch (e: Exception) {
-                    "$ ${oferta.salario}"
+                    "${oferta.salario}"
                 }
+
+                binding.tvCupos.text = "Cupos disponibles: ${oferta.cupos}"
 
                 // Formato de Fechas
                 val formatoFecha = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())

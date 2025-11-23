@@ -52,28 +52,9 @@ class AppBarFragment : Fragment() {
 
             when (menuItem.itemId) {
 
-                R.id.menu_ofertas_laborales -> {
-                    navController?.navigate(R.id.ofertasLaboralesFragment)
-                    true
-                }
 
                 R.id.menu_crear_oferta -> {
                     navController?.navigate(R.id.crearOfertaFragment)
-                    true
-                }
-
-                R.id.menu_perfil -> {
-                    navController?.navigate(R.id.perfilTrabajadorFragment)
-                    true
-                }
-
-                R.id.menu_mis_ofertas -> {
-                    navController?.navigate(R.id.misOfertasFragment)
-                    true
-                }
-
-                R.id.menu_registro_trabajos -> {
-                    navController?.navigate(R.id.contratosActivosFragment)
                     true
                 }
 

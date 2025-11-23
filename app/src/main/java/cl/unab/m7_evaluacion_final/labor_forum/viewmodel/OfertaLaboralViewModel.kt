@@ -66,20 +66,16 @@ class OfertaLaboralViewModel(application: Application) : AndroidViewModel(applic
     // ... (Tu función crearOferta se mantiene igual) ...
     fun crearOferta(
         titulo: String, empresa: String, descripcion: String, salario: String,
-        region: String, comuna: String, fechaInicio: Date, fechaTermino: Date, idEmpleador: Int
+        region: String, comuna: String, fechaInicio: Date, fechaTermino: Date, cupos: Int, idEmpleador: Int
     ) {
         viewModelScope.launch {
             val fechaPublicacion = Date()
-            val calendar = java.util.Calendar.getInstance()
-            calendar.time = fechaTermino
-            calendar.add(java.util.Calendar.DAY_OF_YEAR, 1)
-            val fechaExpiracion = calendar.time
 
             val nuevaOferta = OfertaLaboral(
                 titulo = titulo, empresa = empresa, descripcion = descripcion, salario = salario,
                 region = region, comuna = comuna, fechaPublicacion = fechaPublicacion,
                 fechaInicioContrato = fechaInicio, fechaTerminoContrato = fechaTermino,
-                fechaExpiracion = fechaExpiracion, idEmpleador = idEmpleador
+                cupos = cupos, idEmpleador = idEmpleador
             )
             repositorioOfertas.insertarOferta(nuevaOferta)
         }
