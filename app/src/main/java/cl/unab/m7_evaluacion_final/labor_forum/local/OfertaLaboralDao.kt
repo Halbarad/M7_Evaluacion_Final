@@ -18,7 +18,11 @@ interface OfertaLaboralDao {
     @Query("SELECT * FROM OfertaLaboral WHERE id = :id")
     fun obtenerOfertaPorId(id: Int): kotlinx.coroutines.flow.Flow<OfertaLaboral>
 
-    @Query("SELECT * FROM OfertaLaboral WHERE idEmpleador != :idUsuarioExcluir")
+    @Query("""
+        SELECT * FROM OfertaLaboral 
+        WHERE idEmpleador != :idUsuarioExcluir 
+        AND id NOT IN (SELECT idOferta FROM Contrato WHERE idTrabajador = :idUsuarioExcluir)
+    """)
     fun obtenerOfertasExcluyendoUsuario(idUsuarioExcluir: Int): kotlinx.coroutines.flow.Flow<List<OfertaLaboral>>
 
     @Query("SELECT * FROM OfertaLaboral WHERE idEmpleador = :idEmpleador ORDER BY fechaTerminoContrato DESC")

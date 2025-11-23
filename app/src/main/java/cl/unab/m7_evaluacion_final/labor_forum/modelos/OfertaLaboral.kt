@@ -13,7 +13,8 @@ import java.util.Date
             childColumns = ["idEmpleador"],
             onDelete = ForeignKey.CASCADE
         )
-    ]
+    ],
+    indices = [androidx.room.Index(value = ["idEmpleador"])]
 )
 data class OfertaLaboral(
     @PrimaryKey(autoGenerate = true)
@@ -29,4 +30,4 @@ data class OfertaLaboral(
     val fechaTerminoContrato: Date,
     val cupos: Int,
     val idEmpleador: Int
-    )
+)

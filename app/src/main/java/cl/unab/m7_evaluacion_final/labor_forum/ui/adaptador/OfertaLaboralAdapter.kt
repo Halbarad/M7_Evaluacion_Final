@@ -38,7 +38,7 @@ class OfertaLaboralAdapter(
                 formato.maximumFractionDigits = 0
                 binding.tvSalario.text = formato.format(oferta.salario.toLong())
             } catch (e: Exception) {
-                binding.tvSalario.text = "$ ${oferta.salario}"
+                binding.tvSalario.text = "${oferta.salario}"
             }
 
             // Click en toda la tarjeta

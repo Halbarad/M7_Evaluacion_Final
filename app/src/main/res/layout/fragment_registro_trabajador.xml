@@ -21,6 +21,17 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="40dp" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Registro"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintEnd_toEndOf="@id/guideline_end" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilNombre"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -29,6 +40,7 @@
         android:hint="Nombre"
         app:layout_constraintEnd_toEndOf="@+id/guideline_end"
         app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@+id/tvRegistro"
         app:layout_constraintWidth_max="488dp"
         tools:layout_editor_absoluteY="83dp">
 

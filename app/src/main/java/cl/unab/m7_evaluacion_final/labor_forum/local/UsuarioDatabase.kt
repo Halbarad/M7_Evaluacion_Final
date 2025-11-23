@@ -7,10 +7,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import cl.unab.m7_evaluacion_final.labor_forum.modelos.Usuario
 import cl.unab.m7_evaluacion_final.labor_forum.modelos.OfertaLaboral
+import cl.unab.m7_evaluacion_final.labor_forum.modelos.Contrato
 
 @Database(
-    entities = [Usuario::class, OfertaLaboral::class], // Agrega aquí las otras entidades: [Usuario::class, OfertaLaboral::class, Contrato::class]
-    version = 1,
+    entities = [Usuario::class, OfertaLaboral::class, Contrato::class], // Agrega aquí las otras entidades: [Usuario::class, OfertaLaboral::class, Contrato::class]
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -19,6 +20,7 @@ abstract class UsuarioDatabase : RoomDatabase() {
     // Debes declarar una función abstracta por cada DAO que tengas
     abstract fun usuarioDao(): UsuarioDao
     abstract fun ofertaLaboralDao(): OfertaLaboralDao
+    abstract fun contratoDao(): ContratoDao
 
     companion object {
         @Volatile

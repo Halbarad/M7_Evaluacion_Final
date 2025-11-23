@@ -4,9 +4,10 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.util.Date
 
 @Entity(
-    tableName = "contratos",
+    tableName = "Contrato",
     foreignKeys = [
         ForeignKey(
             entity = OfertaLaboral::class,
@@ -25,12 +26,13 @@ import androidx.room.PrimaryKey
     indices = [Index(value = ["idOferta"]), Index(value = ["idTrabajador"])]
 )
 data class Contrato(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val idOferta: Int,
     val idTrabajador: Int,
     // Aquí controlamos si el trabajador sigue trabajando o ya terminó
     // Valores posibles: "ACTIVO", "FINALIZADO"
     val estado: String = "ACTIVO",
-    val fechaInicio: String,
-    val fechaFin: String? = null
+    val fechaInicio: Date,
+    val fechaTermino: Date
 )
