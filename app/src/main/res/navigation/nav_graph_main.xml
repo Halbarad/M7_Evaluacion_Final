@@ -37,6 +37,10 @@
             android:name="idOfertaLaboral"
             app:argType="integer"
             android:defaultValue="-1"/>
+        <argument
+            android:name="ocultarBotonPostular"
+            app:argType="boolean"
+            android:defaultValue="false"/>
         <action
             android:id="@+id/action_detalleOfertaLaboralFragment_to_ofertasLaboralesFragment"
             app:destination="@id/ofertasLaboralesFragment" />
@@ -72,5 +76,8 @@
         <action
             android:id="@+id/action_contratosActivosFragment_to_ofertasLaboralesFragment"
             app:destination="@id/ofertasLaboralesFragment" />
+        <action
+            android:id="@+id/action_contratosActivosFragment_to_detalleOfertaLaboralFragment"
+            app:destination="@id/detalleOfertaLaboralFragment" />
     </fragment>
 </navigation>

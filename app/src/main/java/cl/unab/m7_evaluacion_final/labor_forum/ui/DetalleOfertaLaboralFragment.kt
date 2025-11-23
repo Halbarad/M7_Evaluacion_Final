@@ -42,6 +42,12 @@ class DetalleOfertaLaboralFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val idOferta = args.idOfertaLaboral
+        val ocultarBoton = args.ocultarBotonPostular
+
+        // LÓGICA PARA OCULTAR EL BOTÓN
+        if (ocultarBoton) {
+            binding.btnPostular.visibility = View.GONE
+        }
 
         binding.btnCancelar.setOnClickListener {
             findNavController().popBackStack()
