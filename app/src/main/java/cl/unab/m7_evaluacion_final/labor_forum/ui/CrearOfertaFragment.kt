@@ -22,7 +22,6 @@ import androidx.navigation.fragment.findNavController
 import cl.unab.m7_evaluacion_final.labor_forum.viewmodel.OfertaLaboralViewModel
 import cl.unab.m7_evaluacion_final.labor_forum.viewmodel.RegistroViewModel
 import java.text.NumberFormat
-import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.navArgs
 
 class CrearOfertaFragment : Fragment() {
