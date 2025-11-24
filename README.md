@@ -5,6 +5,8 @@
 ![Architecture](https://img.shields.io/badge/Architecture-MVVM-blue?style=for-the-badge)
 ![Database](https://img.shields.io/badge/Database-Room-lightgrey?style=for-the-badge)
 
+### **Repositorio:** https://github.com/Halbarad/M7_Evaluacion_Final
+
 ## 📄 Descripción del Proyecto
 
 **Labor Forum** es una aplicación nativa de Android diseñada para conectar a empleadores con trabajadores en Chile. La plataforma permite publicar ofertas laborales detalladas y postular a ellas de manera eficiente, gestionando automáticamente los conflictos de agenda y priorizando oportunidades locales.
@@ -86,7 +88,7 @@ El proyecto incluye una suite de pruebas para garantizar la estabilidad:
 ### Pasos
 1.  **Clonar el repositorio:**
     ```bash
-    git clone https://github.com/tu-usuario/M7_Evaluacion_Final.git
+    git clone https://github.com/Halbarad/M7_Evaluacion_Final.git
     ```
 2.  **Abrir en Android Studio:**
     *   Selecciona `Open` y busca la carpeta clonada.
@@ -96,6 +98,19 @@ El proyecto incluye una suite de pruebas para garantizar la estabilidad:
 4.  **Ejecutar Pruebas:**
     *   Para correr los tests, haz clic derecho en la carpeta `cl.unab.m7_evaluacion_final` dentro de `androidTest` (o `test`) y selecciona "Run Tests".
 
+### Pasos para instalar en dispositivo
+
+1. **Descargar el .aab**
+    * Aceptar en el dispositivo e instalar.
+2. **Funcionalidades de la aplicación**
+    * Una vez abierta la aplicación, se debe registrar un usuario.
+    * Iniciar sesión con el usuario creado.
+    * En la pantalla principal "Ofertas Laborales" se visualizan los trabajos a los que se puede postular.
+    * Utilizando la barra de navegación inferior se puede navegar a "Contratos" donde se muestran los trabajos postulados.
+    * En "Mis Ofertas" se muestran las ofertas de trabajo creadas por el usuario logueado.
+    * En "Perfil" se muestra la información del usuario.
+    * En la barra de navegación se puede seleccionar los 3 puntos para desplegar un menú donde se puede crear una oferta laboral o cerrar seción.
+
 ---
 
-**Desarrollado por:** [Tu Nombre] - UNAB 2024
+**Desarrollado por:** Sebastián Ramírez - UNAB 2025
